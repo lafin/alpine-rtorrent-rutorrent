@@ -1,0 +1,6 @@
+#!/bin/bash
+
+rm -rf ./test
+mkdir test
+docker run -dt --name alpine-rtorrent-rutorrent -p 8080:80 -p 443:443 -p 49160:49160/udp -p 49161:49161 -v $(pwd)/test:/downloads lafin/alpine-rtorrent-rutorrent
+
