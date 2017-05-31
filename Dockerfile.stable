@@ -1,8 +1,8 @@
-FROM alpine:3.3
+FROM alpine:3.6
 USER root
 
 # mediainfo and php-geoip left out
-RUN apk add --no-cache rtorrent unzip unrar curl php-fpm php-cli php-json nginx wget ffmpeg supervisor && \
+RUN apk add --no-cache rtorrent unzip unrar curl php7-fpm php7 php7-json nginx wget ffmpeg supervisor && \
     mkdir -p /var/www && \
     wget --no-check-certificate https://bintray.com/artifact/download/novik65/generic/ruTorrent-3.7.zip && \
     unzip ruTorrent-3.7.zip && \
@@ -16,7 +16,7 @@ RUN cp ./template/config.php /var/www/rutorrent/conf/ && \
     cp ./template/supervisord.conf /etc/supervisor.d/supervisord.ini && \
     mkdir -p /etc/nginx/sites-enabled && \
     cp ./template/nginx.conf /etc/nginx/ && \
-    cp ./template/php-fpm.conf /etc/php/ && \
+    cp ./template/php-fpm.conf /etc/php7/ && \
     cp ./template/rutorrent-*.nginx /root/
 
 EXPOSE 80 443 49160 49161

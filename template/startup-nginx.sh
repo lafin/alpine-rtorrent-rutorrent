@@ -2,15 +2,13 @@
 
 set -x
 
-chown -R www-data:www-data /var/www/rutorrent
+chown -R nginx:nginx /var/www/rutorrent
 cp /downloads/.htpasswd /var/www/rutorrent/
-mkdir -p /downloads/.rutorrent/torrents
-chown -R www-data:www-data /downloads/.rutorrent
+mkdir -p /downloads/.rutorrent/torrents /downloads/.rutorrent/settings
+chown -R nginx:nginx /downloads/.rutorrent
 
 rm -f /etc/nginx/sites-enabled/*
-
 rm -rf /etc/nginx/ssl
-
 rm /var/www/rutorrent/.htpasswd
 
 
@@ -31,7 +29,7 @@ cp /root/$site /etc/nginx/sites-enabled/
 
 # Check if .htpasswd presents
 if [ -e /downloads/.htpasswd ]; then
-    cp /downloads/.htpasswd /var/www/rutorrent/ && chmod 755 /var/www/rutorrent/.htpasswd && chown www-data:www-data /var/www/rutorrent/.htpasswd
+    cp /downloads/.htpasswd /var/www/rutorrent/ && chmod 755 /var/www/rutorrent/.htpasswd && chown nginx:nginx /var/www/rutorrent/.htpasswd
 else
 # disable basic auth
     sed -i 's/auth_basic/#auth_basic/g' /etc/nginx/sites-enabled/$site
