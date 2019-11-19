@@ -19,7 +19,7 @@ RUN cp ./template/config.php /var/www/rutorrent/conf/ && \
     cp ./template/php-fpm.conf /etc/php7/ && \
     cp ./template/rutorrent-*.nginx /root/
 
-EXPOSE 80 443 49160 49161
+EXPOSE 80 443 49160/udp 49161
 VOLUME /downloads
 
 CMD ["supervisord"]
